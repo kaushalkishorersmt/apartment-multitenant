@@ -28,6 +28,8 @@ class ShopsController < ApplicationController
 
     respond_to do |format|
       if @shop.save
+        byebug
+        current_site_admin.shop_site_admin.create!(shop: @shop)
         format.html { redirect_to @shop, notice: 'Shop was successfully created.' }
         format.json { render :show, status: :created, location: @shop }
       else
