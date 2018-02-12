@@ -22,9 +22,9 @@
         <td><%= shop.domain %></td>
         <td><%= shop.theme %></td>
         <td><%= shop.main_product %></td>
-        <td><%= link_to 'Show', shop %></td>
-        <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
-        <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', control_panel_shop_path(shop) %></td>
+        <td><%= link_to 'Edit', edit_control_panel_shop_path(shop) %></td>
+        <td><%= link_to 'Destroy', control_panel_shop_path(shop), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Shop', new_shop_path %>
+<%= link_to 'New Shop', new_control_panel_shop_path %>
