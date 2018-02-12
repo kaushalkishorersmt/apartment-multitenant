@@ -24,6 +24,7 @@ class ShopsController < ApplicationController
   # POST /shops
   # POST /shops.json
   def create
+    byebug
     @shop = Shop.new(shop_params)
 
     respond_to do |format|

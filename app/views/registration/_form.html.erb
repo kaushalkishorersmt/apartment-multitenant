@@ -1,0 +1,52 @@
+<h2>Shop Registration</h2>
+
+<%= form_with url: registration_index_path do |form| %>
+
+  <div class="field">
+    <%= form.label :full_name %><br />
+    <%= form.text_field :full_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %><br />
+    <%= form.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_number %><br />
+    <%= form.text_field :contact_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shop_name %><br />
+    <%= form.text_field :shop_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_product_id %>
+    <%= form.text_field :main_product_id, id: :shop_main_product_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :theme_id %>
+    <%= form.text_field :theme_id, id: :shop_theme_id %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= form.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation %><br />
+    <%= form.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Register" %>
+  </div>
+<% end %>
