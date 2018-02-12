@@ -1,0 +1,22 @@
+<%= form_with(model: main_product, local: true) do |form| %>
+  <% if main_product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(main_product.errors.count, "error") %> prohibited this main_product from being saved:</h2>
+
+      <ul>
+      <% main_product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :main_product_title %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
