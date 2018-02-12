@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     case request.subdomain
     when '', 'www'
-      control_panel_shops_path
+      # byebug
+      # redirect_to control_panel_shops_path && return
+      redirect_to '/', notice: 'Shop was successfully updated.'
     else
       # control_panel_pages_path
     end

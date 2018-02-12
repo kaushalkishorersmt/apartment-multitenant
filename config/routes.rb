@@ -5,7 +5,7 @@ class SubdomainConstraint
   end
 end
 
-class ShopknektConstraint
+class LandingConstraint
   def self.matches?(request)
     domains = %w{ www.lvh.me lvh.me localhost www.localhost bizknekt.com www.bizknekt.com }
     case request.subdomain
@@ -26,10 +26,9 @@ Rails.application.routes.draw do
   devise_for :site_admins
 
   # For the Shopknekt
-  constraints ShopknektConstraint do
+  constraints LandingConstraint do
     resources :themes
     namespace :control_panel do
-      resources :themes
       resources :shops
     end
   end

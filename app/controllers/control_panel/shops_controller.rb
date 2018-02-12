@@ -24,13 +24,12 @@ class ControlPanel::ShopsController < ApplicationController
   # POST /shops
   # POST /shops.json
   def create
-    byebug
     @shop = Shop.new(shop_params)
 
     respond_to do |format|
       if @shop.save
         current_site_admin.shop_site_admin.create!(shop: @shop)
-        format.html { redirect_to @shop, notice: 'Shop was successfully created.' }
+        format.html { redirect_to control_panel_shops_path, notice: 'Shop was successfully created.' }
         format.json { render :show, status: :created, location: @shop }
       else
         format.html { render :new }
