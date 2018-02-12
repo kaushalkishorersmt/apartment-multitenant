@@ -1,0 +1,42 @@
+<%= form_with(model: shop, local: true) do |form| %>
+  <% if shop.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shop.errors.count, "error") %> prohibited this shop from being saved:</h2>
+
+      <ul>
+      <% shop.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :shop_name %>
+    <%= form.text_field :shop_name, id: :shop_shop_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subdomain %>
+    <%= form.text_field :subdomain, id: :shop_subdomain %>
+  </div>
+
+  <div class="field">
+    <%= form.label :domain %>
+    <%= form.text_field :domain, id: :shop_domain %>
+  </div>
+
+  <div class="field">
+    <%= form.label :theme_id %>
+    <%= form.text_field :theme_id, id: :shop_theme_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_product_id %>
+    <%= form.text_field :main_product_id, id: :shop_main_product_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

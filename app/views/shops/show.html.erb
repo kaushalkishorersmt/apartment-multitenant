@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Shop name:</strong>
+  <%= @shop.shop_name %>
+</p>
+
+<p>
+  <strong>Subdomain:</strong>
+  <%= @shop.subdomain %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @shop.domain %>
+</p>
+
+<p>
+  <strong>Theme:</strong>
+  <%= @shop.theme %>
+</p>
+
+<p>
+  <strong>Main product:</strong>
+  <%= @shop.main_product %>
+</p>
+
+<%= link_to 'Edit', edit_shop_path(@shop) %> |
+<%= link_to 'Back', shops_path %>
