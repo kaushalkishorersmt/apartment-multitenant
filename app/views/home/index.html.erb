@@ -1,13 +1,2 @@
-<h1>Shopknekt v2</h1>
-<p>Find me in app/views/home/index.html.erb</p>
 
-<% if current_site_admin.present? %>
-  <%#= link_to "Sign Out", destroy_site_admin_session_path, method: :delete, class: "btn-ghost"  %>
-  <%= link_to "Shops", control_panel_shops_path, class: "btn-ghost" %>
-  <%= button_to "Sign Out", destroy_site_admin_session_path, method: :delete, :id => "button" %>
- <% else %>
-   <%= link_to "Sign In", new_site_admin_session_path, class: "btn-ghost" %>
-   <%#= link_to "Register Now", new_site_admin_registration_path, class: "btn-ghost" %>
-   <%= link_to "Register Now", new_registration_path, class: "btn-ghost" %>
-
- <% end %>
+<p>Home page</p>
