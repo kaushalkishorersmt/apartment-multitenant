@@ -1,0 +1,43 @@
+
+<h1>Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Decrption</th>
+      <th>Min price</th>
+      <th>Reseller price</th>
+      <th>Price</th>
+      <th>Tax rate</th>
+      <th>Is tax inclusive</th>
+      <th>Is featured</th>
+      <th>Is private</th>
+      <th>Is community product</th>
+      <th>Subcategory</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.title %></td>
+        <td><%= product.decrption %></td>
+        <td><%= product.min_price %></td>
+        <td><%= product.reseller_price %></td>
+        <td><%= product.price %></td>
+        <td><%= product.tax_rate %></td>
+        <td><%= product.is_tax_inclusive %></td>
+        <td><%= product.is_featured %></td>
+        <td><%= product.is_private %></td>
+        <td><%= product.is_community_product %></td>
+        <td><%= product.subcategory_id %></td>
+        <td><%= product.image %></td>
+        <td><%= link_to 'Show', control_panel_product_path(product) %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>

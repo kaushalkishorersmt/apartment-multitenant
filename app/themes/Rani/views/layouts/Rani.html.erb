@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rani</title>
+  <%= stylesheet_link_tag    "Rani/all", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "Rani/all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div id="navbar">
+    <ul>
+        <li><%= link_to "Home", '/' %></li>
+        <% if current_customer.present? %>
+          <li><%= button_to "Sign Out", destroy_customer_session_path, method: :delete, :id => "button" %></li>
+        <% else %>
+          <li><%= link_to "Sign In", new_customer_session_path, class: "btn-ghost" %></li>
+          <li><%= link_to "Registration", customer_signup_path, class: "btn-ghost" %></li>
+        <% end %>
+    </ul>
+  </div>
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <div class="content">
+    <%= yield %>
+  </div>
+
+  <div class="footer"> Shop Name <strong>@2018</strong>.</div>
+
+
+</body>
+</html>
