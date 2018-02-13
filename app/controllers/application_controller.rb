@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
     case request.subdomain
     when '', 'www'
       # byebug
-      # redirect_to control_panel_shops_path && return
-      redirect_to '/', notice: 'Shop was successfully updated.'
+      control_panel_shops_path
+      # redirect_to '/'
     else
       # control_panel_pages_path
     end
