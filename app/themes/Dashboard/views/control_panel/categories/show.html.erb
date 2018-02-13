@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @category.title %>
+</p>
+
+<p>
+  <strong>Product segment:</strong>
+  <%= @category.product_segment %>
+</p>
+
+<%= link_to 'Edit', edit_control_panel_category_path(@category) %> |
+<%= link_to 'Back', control_panel_categories_path %>
