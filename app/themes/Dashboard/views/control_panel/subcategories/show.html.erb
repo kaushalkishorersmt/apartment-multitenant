@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @subcategory.title %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @subcategory.category_id %>
+</p>
+
+<%= link_to 'Edit', edit_control_panel_subcategory_path(@subcategory) %> |
+<%= link_to 'Back', control_panel_subcategories_path %>

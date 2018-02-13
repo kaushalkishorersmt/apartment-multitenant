@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
 
 
+
   root to: "home#index"
   resources :registration
 
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
     namespace :control_panel do
       resources :product_segments
       resources :categories
+      resources :subcategories
     end
 
     # get ':slug', to: 'pages#show', as: "pages"
