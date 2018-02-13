@@ -1,0 +1,77 @@
+<%= form_with(model: [:control_panel, product], local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :product_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :decrption %>
+    <%= form.text_area :decrption, id: :product_decrption %>
+  </div>
+
+  <div class="field">
+    <%= form.label :min_price %>
+    <%= form.text_field :min_price, id: :product_min_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reseller_price %>
+    <%= form.text_field :reseller_price, id: :product_reseller_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :product_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax_rate %>
+    <%= form.text_field :tax_rate, id: :product_tax_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_tax_inclusive %>
+    <%= form.check_box :is_tax_inclusive, id: :product_is_tax_inclusive %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_featured %>
+    <%= form.check_box :is_featured, id: :product_is_featured %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_private %>
+    <%= form.check_box :is_private, id: :product_is_private %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_community_product %>
+    <%= form.check_box :is_community_product, id: :product_is_community_product %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subcategory %>
+    <%= form.text_field :subcategory_id, id: :product_subcategory %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image, id: :product_image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

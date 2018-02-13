@@ -22,13 +22,14 @@ Rails.application.routes.draw do
 
 
 
+
   root to: "home#index"
   resources :registration
 
   resources :main_products
   devise_for :site_admins
 
-  # For the Shopknekt
+  # For the ShopknektV2
   constraints LandingConstraint do
     resources :themes
     namespace :control_panel do
@@ -43,9 +44,8 @@ Rails.application.routes.draw do
       resources :product_segments
       resources :categories
       resources :subcategories
+      resources :products
     end
-
-    # get ':slug', to: 'pages#show', as: "pages"
   end
 
 end

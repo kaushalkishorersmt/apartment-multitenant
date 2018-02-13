@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @product.title %>
+</p>
+
+<p>
+  <strong>Decrption:</strong>
+  <%= @product.decrption %>
+</p>
+
+<p>
+  <strong>Min price:</strong>
+  <%= @product.min_price %>
+</p>
+
+<p>
+  <strong>Reseller price:</strong>
+  <%= @product.reseller_price %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+
+<p>
+  <strong>Tax rate:</strong>
+  <%= @product.tax_rate %>
+</p>
+
+<p>
+  <strong>Is tax inclusive:</strong>
+  <%= @product.is_tax_inclusive %>
+</p>
+
+<p>
+  <strong>Is featured:</strong>
+  <%= @product.is_featured %>
+</p>
+
+<p>
+  <strong>Is private:</strong>
+  <%= @product.is_private %>
+</p>
+
+<p>
+  <strong>Is community product:</strong>
+  <%= @product.is_community_product %>
+</p>
+
+<p>
+  <strong>Subcategory:</strong>
+  <%= @product.subcategory_id %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @product.image %>
+</p>
+
+<%= link_to 'Edit', edit_control_panel_product_path(@product) %> |
+<%= link_to 'Back', control_panel_products_path %>
