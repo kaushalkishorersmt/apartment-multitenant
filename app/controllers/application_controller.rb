@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
 
 
   def theme_resolver
+    byebug
     if Apartment::Tenant.current == "public"
       if current_site_admin.present? && (request.path.include? "control_panel")
         params[:theme] ||= "Dashboard"
