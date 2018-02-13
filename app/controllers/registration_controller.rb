@@ -10,13 +10,13 @@ class RegistrationController < ApplicationController
   def create
       @site_admin = SiteAdmin.new(full_name: params[:full_name],contact_number: params[:contact_number], email: params[:email], password: params[:password], password_confirmation: params[:password])
       @site_admin.save
-
+      sign_in(:site_admin, @site_admin)
 
       @shop = Shop.new(shop_name: params[:shop_name], subdomain: params[:subdomain], theme_id: params[:theme_id], main_product_id: params[:main_product_id])
       @shop.save
 
-      sign_in(:site_admin, @site_admin)
-      after_sign_in_path_for(@site_admin)
+      redirect_to '/' && return
+      # after_sign_in_path_for(@site_admin)
       # redirect_to '/', notice: 'Shop was successfully updated.'
   end
 
