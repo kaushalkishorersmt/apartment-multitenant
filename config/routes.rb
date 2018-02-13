@@ -19,6 +19,7 @@ end
 
 Rails.application.routes.draw do
 
+
   root to: "home#index"
   resources :registration
 
@@ -30,13 +31,14 @@ Rails.application.routes.draw do
     resources :themes
     namespace :control_panel do
       resources :shops
+
     end
   end
 
   # For Tenants sites.
   constraints SubdomainConstraint do
     namespace :control_panel do
-      # resources :pages, param: :slug
+      resources :product_segments
     end
 
     # get ':slug', to: 'pages#show', as: "pages"

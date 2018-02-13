@@ -1,0 +1,2 @@
+class ProductSegment < ApplicationRecord
+end

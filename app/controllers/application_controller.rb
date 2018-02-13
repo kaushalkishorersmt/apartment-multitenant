@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       control_panel_shops_path
       # redirect_to '/'
     else
-      # control_panel_pages_path
+      product_segments_path
     end
   end
 

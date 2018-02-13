@@ -1,4 +1,5 @@
 class ControlPanel::ShopsController < ApplicationController
+  before_action :authenticate_site_admin!
   before_action :set_shop, only: [:show, :edit, :update, :destroy]
 
   # GET /shops
