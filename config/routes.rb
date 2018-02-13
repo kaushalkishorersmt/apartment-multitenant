@@ -19,7 +19,7 @@ end
 
 Rails.application.routes.draw do
 
-  resources :orders
+
   root to: "home#index"
   get '/product/show', to: "home#show"
   resources :shop_registration
@@ -67,6 +67,8 @@ Rails.application.routes.draw do
     # devise_for :customers, controllers: {
     #   sessions: 'customers/sessions'
     # }
+    resources :orders
+    resources :order_items
   end
 
 end
