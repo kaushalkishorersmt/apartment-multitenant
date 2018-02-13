@@ -16,8 +16,8 @@
            <li><%= link_to "Shops", control_panel_shops_path, class: "btn-ghost" %></li>
            <li><%= button_to "Sign Out", destroy_site_admin_session_path, method: :delete, :id => "button" %></li>
          <% else %>
-           <li><%= link_to "Sign In", new_site_admin_session_path, class: "btn-ghost" %></li>
-           <li><%= link_to "Register Now", new_registration_path, class: "btn-ghost" %></li>
+           <li><%= link_to "Sign In", site_admin_login_path, class: "btn-ghost" %></li>
+           <li><%= link_to "Register Now", new_shop_registration_path, class: "btn-ghost" %></li>
          <% end %>
      </ul>
    </div>

@@ -4,7 +4,7 @@ class Shop < ApplicationRecord
 
   after_create :create_tenant
 
-  has_many :shop_site_admin
+  has_many :shop_site_admins
   has_many :site_admin, through: :shop_site_admins
 
   before_save do

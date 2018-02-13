@@ -13,13 +13,18 @@ class ApplicationController < ActionController::Base
       control_panel_shops_path
       # redirect_to '/'
     else
-      control_panel_product_segments_path
+      if current_site_admin.present?
+        control_panel_product_segments_path
+      else
+        '/'
+      end
     end
   end
 
 
 
   def theme_resolver
+    # byebug
     if Apartment::Tenant.current == "public"
       if current_site_admin.present? && (request.path.include? "control_panel")
         params[:theme] ||= "Dashboard"

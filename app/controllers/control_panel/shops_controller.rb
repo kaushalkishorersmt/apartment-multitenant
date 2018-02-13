@@ -5,7 +5,7 @@ class ControlPanel::ShopsController < ApplicationController
   # GET /shops
   # GET /shops.json
   def index
-    @shops = Shop.all
+    @shops = current_site_admin.shop
   end
 
   # GET /shops/1
@@ -29,7 +29,7 @@ class ControlPanel::ShopsController < ApplicationController
 
     respond_to do |format|
       if @shop.save
-        current_site_admin.shop_site_admin.create!(shop: @shop)
+        current_site_admin.shop_site_admins.create!(shop: @shop)
         format.html { redirect_to control_panel_shops_path, notice: 'Shop was successfully created.' }
         format.json { render :show, status: :created, location: @shop }
       else

@@ -1,4 +1,4 @@
-class RegistrationController < ApplicationController
+class ShopRegistrationController < ApplicationController
   before_action :set_shop, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -14,7 +14,7 @@ class RegistrationController < ApplicationController
 
       @shop = Shop.new(shop_name: params[:shop_name], subdomain: params[:subdomain], theme_id: params[:theme_id], main_product_id: params[:main_product_id])
       @shop.save
-
+      current_site_admin.shop_site_admin.create!(shop: @shop)
       redirect_to '/' && return
       # after_sign_in_path_for(@site_admin)
       # redirect_to '/', notice: 'Shop was successfully updated.'
