@@ -25,6 +25,9 @@
         <td><%= link_to 'Show', control_panel_shop_path(shop) %></td>
         <td><%= link_to 'Edit', edit_control_panel_shop_path(shop) %></td>
         <td><%= link_to 'Destroy', control_panel_shop_path(shop), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><a href="http://<%= shop.subdomain %>.<%= ENV['DEFAULTURL'] %>" target="_blank">Edit Shop</a>
+          <!-- http://<%= shop.subdomain %>.<%= ENV['DEFAULTURL'] %>/control_panel/products -->
+        </td>
       </tr>
     <% end %>
   </tbody>

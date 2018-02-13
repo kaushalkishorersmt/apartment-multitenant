@@ -8,8 +8,27 @@
 </head>
 <body>
 
-<%= yield %>
-This is Alia
+  <div id="navbar">
+    <ul>
+        <li><%= link_to "Home", '/' %></li>
+        <% if current_site_admin.present? %>
+          <li><%= link_to "Shops", control_panel_shops_path, class: "btn-ghost" %></li>
+          <li><%= button_to "Sign Out", destroy_site_admin_session_path, method: :delete, :id => "button" %></li>
+        <% else %>
+          <li><%= link_to "Sign In", new_site_admin_session_path, class: "btn-ghost" %></li>
+          <li><%= link_to "Products", new_registration_path, class: "btn-ghost" %></li>
+        <% end %>
+    </ul>
+  </div>
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <div class="content">
+    <%= yield %>
+  </div>
+
+  <div class="footer"> Shop Name <strong>@2018</strong>.</div>
 
 </body>
 </html>

@@ -31,13 +31,13 @@ class ApplicationController < ActionController::Base
         if current_site_admin.present?
           params[:theme] ||= "Dashboard"
         else
-          @site ||= Site.find_by_subdomain(Apartment::Tenant.current)
-          params[:theme] ||= @site.theme.theme_name
+          @shop ||= Shop.find_by_subdomain(Apartment::Tenant.current)
+          params[:theme] ||= @shop.theme.theme_name
         end
       else
         # After theme selection setup remove extra query "@site.theme.theme_name"
-        @site ||= Site.find_by_subdomain(Apartment::Tenant.current)
-        params[:theme] ||= @site.theme.theme_name
+        @shop ||= Shop.find_by_subdomain(Apartment::Tenant.current)
+        params[:theme] ||= @shop.theme.theme_name
       end
     end
   end
