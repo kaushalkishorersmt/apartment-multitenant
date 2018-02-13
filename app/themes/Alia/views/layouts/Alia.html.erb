@@ -10,6 +10,9 @@
 
   <div id="navbar">
     <ul>
+        <% if current_site_admin.present? %>
+          <li><%= button_to "Sign Out", destroy_site_admin_session_path, method: :delete, :id => "button" %></li>
+        <% end %>
         <li><%= link_to "Home", '/' %></li>
         <% if current_customer.present? %>
           <li><%= button_to "Sign Out", destroy_customer_session_path, method: :delete, :id => "button" %></li>

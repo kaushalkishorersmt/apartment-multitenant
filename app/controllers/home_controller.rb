@@ -7,7 +7,7 @@ class HomeController < ApplicationController
 
     else
       if current_site_admin.present?
-
+        @products = Product.all
       else
         @products = Product.all
       end
