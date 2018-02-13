@@ -19,6 +19,7 @@ end
 
 Rails.application.routes.draw do
   root to: "home#index"
+  get '/product/show', to: "home#show"
   resources :shop_registration
 
   resources :main_products

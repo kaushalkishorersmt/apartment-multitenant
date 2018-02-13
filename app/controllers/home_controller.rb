@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_action :set_product, only: [:show]
 
   def index
     case request.subdomain
@@ -12,5 +13,14 @@ class HomeController < ApplicationController
       end
     end
   end
+
+  def show
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_product
+      @product = Product.find(params[:format].to_i)
+    end
 
 end

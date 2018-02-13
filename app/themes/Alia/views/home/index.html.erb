@@ -35,8 +35,8 @@
         <td><%= product.is_community_product %></td>
         <td><%= product.subcategory_id %></td>
         <td><%= product.image %></td>
-        <td><%= link_to 'Show', control_panel_product_path(product) %></td>
-        
+        <td><%= link_to 'Show', product_show_path(product) %></td>
+
       </tr>
     <% end %>
   </tbody>
