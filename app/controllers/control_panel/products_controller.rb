@@ -2,6 +2,8 @@ class ControlPanel::ProductsController < ApplicationController
   before_action :authenticate_site_admin!
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
+  # wrap_parameters include: Product.attribute_names + [:product_segment_id]
+
   # GET /products
   # GET /products.json
   def index
@@ -16,6 +18,7 @@ class ControlPanel::ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    @product_segments = ProductSegment.all
   end
 
   # GET /products/1/edit
@@ -70,6 +73,6 @@ class ControlPanel::ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :decrption, :min_price, :reseller_price, :price, :tax_rate, :is_tax_inclusive, :is_featured, :is_private, :is_community_product, :subcategory, :image)
+      params.require(:product).permit(:title, :decrption, :min_price, :reseller_price, :price, :tax_rate, :is_tax_inclusive, :is_featured, :is_private, :is_community_product, :subcategory_id, :image, :product_segment_id, :category_id)
     end
 end

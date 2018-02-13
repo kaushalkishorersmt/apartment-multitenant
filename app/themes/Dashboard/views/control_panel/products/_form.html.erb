@@ -61,10 +61,25 @@
     <%= form.check_box :is_community_product, id: :product_is_community_product %>
   </div>
 
+  <!-- <div class="field">
+    <%#= form.label :subcategory %>
+    <%#= form.text_field :subcategory_id, id: :product_subcategory %>
+  </div> -->
+
+  <!-- <div class="field">
+    <%#= f.collection_select :main_product_id, @main_product_categories, :id, :title, {:include_blank => true, prompt: "Select Category"}, { class: 'form-control'} %>
+  </div> -->
   <div class="field">
-    <%= form.label :subcategory %>
-    <%= form.text_field :subcategory_id, id: :product_subcategory %>
+    <%= form.collection_select :product_segment_id, ProductSegment.all, :id, :title, {:include_blank => true, prompt: "Select Category"}, { class: 'form-control' } %>
   </div>
+  <div class="field">
+    <%= form.grouped_collection_select :category_id, ProductSegment.all, :categories, :id, :id, :title, {:include_blank => true}, { class: 'form-control' }  %>
+  </div>
+  <div class="field">
+    <%= form.grouped_collection_select :subcategory_id, Category.all, :subcategories, :id, :id, :title, {:include_blank => true}, { class: 'form-control' }  %>
+  </div>
+
+
 
   <div class="field">
     <%= form.label :image %>
