@@ -18,6 +18,7 @@ class LandingConstraint
 end
 
 Rails.application.routes.draw do
+
   root to: "home#index"
   get '/product/show', to: "home#show"
   resources :shop_registration
@@ -32,8 +33,6 @@ Rails.application.routes.draw do
     get '/site_admin_logout', to: 'site_admins/sessions#destroy', as: 'site_admin_logout', via: Devise.mappings[:site_admin].sign_out_via
     get '/site_admin_signup', to: 'site_admins/registrations#new', as: 'site_admin_signup'
   end
-
-
 
 
   devise_for :customers, controllers: {
@@ -61,6 +60,7 @@ Rails.application.routes.draw do
       resources :categories
       resources :subcategories
       resources :products
+      resources :product_properties
     end
     # devise_for :customers
     # devise_for :customers, controllers: {

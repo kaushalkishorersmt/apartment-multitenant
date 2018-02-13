@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @product_property.product %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @product_property.size %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @product_property.color %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @product_property.quantity %>
+</p>
+
+<%= link_to 'Edit', edit_control_panel_product_property_path(@product_property) %> |
+<%= link_to 'Back', control_panel_product_properties_path %>

@@ -73,6 +73,6 @@ class ControlPanel::ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :decrption, :min_price, :reseller_price, :price, :tax_rate, :is_tax_inclusive, :is_featured, :is_private, :is_community_product, :subcategory_id, :image, :product_segment_id, :category_id)
+      params.require(:product).permit(:title, :decrption, :min_price, :reseller_price, :price, :tax_rate, :is_tax_inclusive, :is_featured, :is_private, :is_community_product, :subcategory_id, :image, :product_segment_id, :category_id, {product_properties_attributes: [:id, :quantity, :size, :color]})
     end
 end

@@ -79,12 +79,24 @@
     <%= form.grouped_collection_select :subcategory_id, Category.all, :subcategories, :id, :id, :title, {:include_blank => true}, { class: 'form-control' }  %>
   </div>
 
-
-
   <div class="field">
     <%= form.label :image %>
     <%= form.text_field :image, id: :product_image %>
   </div>
+
+
+
+  <div class="box">
+    <div class="box-header with-border">
+      <%= link_to_add_fields "Add Product Property", form, :product_properties %>
+      <label class="pull-right" id="totalqty"></label>
+    </div>
+    <%= form.fields_for :product_properties do |p| %>
+    <%= render 'product_property_fields', p: p %>
+    <% end %>
+  </div>
+
+
 
   <div class="actions">
     <%= form.submit %>
