@@ -32,6 +32,8 @@ class ControlPanel::ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
+
+        byebug
         format.html { redirect_to control_panel_products_path, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
@@ -73,6 +75,6 @@ class ControlPanel::ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :decrption, :min_price, :reseller_price, :price, :tax_rate, :is_tax_inclusive, :is_featured, :is_private, :is_community_product, :subcategory_id, :image, :product_segment_id, :category_id, {product_properties_attributes: [:id, :quantity, :size, :color]})
+      params.require(:product).permit(:title, :decrption, :min_price, :reseller_price, :price, :tax_rate, :is_tax_inclusive, :is_featured, :is_private, :is_community_product, :subcategory_id, :image, :product_segment_id, :category_id, :quantity {product_properties_attributes: [:id, :quantity, :size, :color]})
     end
 end

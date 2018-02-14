@@ -1,0 +1,144 @@
+<div id="all">
+  <div id="content">
+    <div class="container">
+      <div class="col-md-12">
+        <ul class="breadcrumb">
+          <li>
+            <%= link_to "Home", root_path %>
+          </li>
+          <li>Shopping cart</li>
+        </ul>
+        <div class="box text-center">
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <h1>Shopping cart</h1>
+              <% if current_cart.empty? %>
+                <p class="text-muted">
+                  <%= t('cart.isempty') %>
+                </p>
+                <%= link_to t('back.home'), root_path, class: "btn btn-default" %>
+              <% else %>
+                <p class="text-muted">You currently have
+                  <%= current_cart.items.count %> item(s) in your cart.</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 clearfix">
+        <div class="box">
+          <div class="table-responsive hidden-xs">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th colspan="2">
+                    <%= t('product.self') %>
+                  </th>
+                  <th>Color</th>
+                  <th>Size</th>
+                  <th>
+                    <%= t('product.quantity') %>
+                  </th>
+                  <th>
+                    <%= t('product.originalprice') %>
+                  </th>
+                  <th>
+                    <%= t('product.discount') %>
+                  </th>
+                  <th colspan="2">
+                    <%= t('product.price') %>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= render partial: 'cart_item' %>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th colspan="5">Total</th>
+                  <th colspan="2">
+                    <%= number_to_currency(current_cart.total, unit: "₹ ") %>
+                  </th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="visible-xs">
+            <%#= render partial: 'cart_item_mobile' %>
+          </div>
+          <!-- /.table-responsive -->
+          <div class="box-footer">
+            <div class="pull-left">
+              <%= link_to root_path, class: "btn btn-default" do %>
+                <%#= fa_icon "chevron-left" %> Continue shopping
+              <% end %>
+            </div>
+            <div class="pull-right">
+              <%= link_to cart_path, class: 'btn btn-default', method: :delete do %>
+                <%#= fa_icon "trash-o" %>
+                <%= t('cart.empty') %>
+              <% end %>
+              <%= link_to checkout_address_cart_path, class: 'btn btn-default' do %>
+                Proceed to Checkout
+                <%#= fa_icon "chevron-right" %>
+              <% end %>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.box -->
+        <div class="row">
+          <div class="row">
+            <div class="col-md-12 col-sm-6">
+              <div class="box">
+                <h3>You may also like these products</h3>
+              </div>
+            </div>
+            <%#= render @products.limit(6), class_name: "col-md-4 col-sm-6"  %>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-9 -->
+      <div class="col-md-3">
+        <div class="box" id="order-summary">
+          <div class="box-header">
+            <h3>Order summary</h3>
+          </div>
+          <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Order subtotal</td>
+                  <th>
+                    <%= number_to_currency(current_cart.total, unit: "₹ ") %>
+                  </th>
+                </tr>
+                <tr>
+                  <td>Shipping and handling</td>
+                  <th>0.00</th>
+                </tr>
+                <tr>
+                  <td>Tax</td>
+                  <th>0.00</th>
+                </tr>
+                <tr class="total">
+                  <td>Total</td>
+                  <th>
+                    <%= number_to_currency(current_cart.total, unit: "₹ ") %>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-3 -->
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /#content -->
+</div>
+<br>
+<br>

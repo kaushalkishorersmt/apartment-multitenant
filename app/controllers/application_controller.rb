@@ -2,8 +2,24 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   theme :theme_resolver
+  helper_method :current_cart, :get_flag
 
+  def find_or_create_cart
+    session[:cart] ||= Hash.new(0)
+  end
 
+  def current_cart
+    @cart ||= Cart.new(session[:cart])
+  end
+
+  def get_flag
+    case session[:i18n]
+    when 'fr' then 'fr'
+    when 'cs' then 'cs'
+    when 'ca' then 'ca'
+    else 'us'
+    end
+  end
 
 
   def after_sign_in_path_for(resource)

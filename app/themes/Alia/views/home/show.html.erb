@@ -1,3 +1,44 @@
+<ul class="nav navbar-nav navbar-right" style="display: -webkit-inline-box;">
+  <li>
+    <%= link_to cart_path(params[:format].to_i) do %>
+      <span class="cart_item_number">
+        => <%= current_cart.count %>
+      </span>
+      <%#= fa_icon "shopping-cart" %>
+    <% end %>
+  </li>
+</ul>
+
+
+
+<div class="box">
+  <%= simple_form_for :carts, url: cart_path(params[:format].to_i), method: :put do |f| %>
+
+    <% @this_product = @product %>
+    <%= f.hidden_field :product_id, value: @product.id %>
+
+    <!-- <% unless get_product_properties(@this_product).pluck(:size).uniq == [""] %> -->
+      <p>Size:
+        <%= f.select :size, ProductProperty.where(product_id: @this_product).pluck(:size), prompt: 'Select Size', :include_blank => false %>
+      </p>
+    <!-- <% end %>
+    <% unless get_product_properties(@this_product).pluck(:color).uniq == [""] %> -->
+      <p>Color:
+        <%= f.select :color, ProductProperty.where(product_id: @this_product).pluck(:color), prompt: 'Select Color', :include_blank => false %>
+      </p>
+    <!-- <% end %> -->
+
+    <p class="price">
+      <%= number_to_currency(@product.price) %>
+    </p>
+
+    <p>
+      <%= f.button :submit, "Add To Cart", class: 'btn btn-custom-lighten' %>
+      <%= f.button :submit, "Buy Now", class: 'btn btn-custom-lighten' %>
+    </p>
+  <% end %>
+</div>
+
 <p id="notice"><%= notice %></p>
 
 <p>

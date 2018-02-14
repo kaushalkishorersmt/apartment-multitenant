@@ -9,4 +9,12 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
+  def get_product_properties(this_product)
+    # if this_product.source == "community"
+    #   ProductProperty.where(product_id: this_product.source_product_id)
+    # else
+      ProductProperty.where(product_id: this_product.id)
+    # end
+  end
+
 end

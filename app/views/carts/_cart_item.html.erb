@@ -1,0 +1,32 @@
+<% current_cart.items.each do |cart_item| %>
+  <tr id="product_<%= cart_item.product.id %>" class="hidden-xs">
+    <td style="max-width: 75px">
+      <%#= image_tag product_small_image_path(cart_item.product), class: "img-responsive" %>
+    </td>
+    <td><%= link_to cart_item.title, product_show_path(cart_item.product) %></td>
+    <% if cart_item.color.nil? %>
+      <td>-</td>
+    <% else %>
+      <td><%= cart_item.color %></td>
+    <% end %>
+    <% if cart_item.size.nil? %>
+      <td>-</td>
+    <% else %>
+      <td><%= cart_item.size %></td>
+    <% end %>
+    <%= simple_form_for :carts, url: '/cart', method: :put do |f| %>
+      <td class="text-right">
+        <%= f.hidden_field :product_id, value: cart_item.product.id %>
+        <%= f.input_field :quantity, value: cart_item.quantity, class: 'form-control' %>
+        <%= f.hidden_field :color, value: cart_item.color %>
+        <%= f.hidden_field :size, value: cart_item.size %>
+        <%= button_tag(type: 'submit', class: "btn btn-primary") do %><%#= fa_icon "refresh" %> Update<% end %>
+        </td>
+      <% end %>
+      <td><%= number_to_currency(cart_item.unit_price, unit: "₹ ") %></td>
+      <td><%#= cart_item.percent_off %> %</td>
+      <td colspan="2"><%= number_to_currency(cart_item.selling_price, unit: "₹ ") %></td>
+      <td><%= link_to remove_item_cart_path(remove_item: { product_id: cart_item.product.id }), confirm: t('confirm'), method: :put do %><%#= fa_icon "trash-o" %><% end %>
+      </td>
+    </tr>
+  <% end %>

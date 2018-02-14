@@ -19,7 +19,6 @@ end
 
 Rails.application.routes.draw do
 
-
   root to: "home#index"
   get '/product/show', to: "home#show"
   resources :shop_registration
@@ -69,6 +68,20 @@ Rails.application.routes.draw do
     # }
     resources :orders
     resources :order_items
+    resources :carts
+
+
+    resource :cart, only: %i[update show destroy] do
+      member do
+        put :remove_item
+        get :checkout_address
+        get :checkout_review
+        get :checkout_payment
+      end
+    end
+
+
+    
   end
 
 end
