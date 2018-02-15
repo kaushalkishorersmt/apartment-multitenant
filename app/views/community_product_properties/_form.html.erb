@@ -1,0 +1,37 @@
+<%= form_with(model: community_product_property, local: true) do |form| %>
+  <% if community_product_property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(community_product_property.errors.count, "error") %> prohibited this community_product_property from being saved:</h2>
+
+      <ul>
+      <% community_product_property.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :community_product_id %>
+    <%= form.text_field :community_product_id, id: :community_product_property_community_product_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :size %>
+    <%= form.text_field :size, id: :community_product_property_size %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color %>
+    <%= form.text_field :color, id: :community_product_property_color %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, id: :community_product_property_quantity %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,1 @@
+json.partial! "community_product_properties/community_product_property", community_product_property: @community_product_property

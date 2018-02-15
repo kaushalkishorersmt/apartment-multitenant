@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Community Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Decrption</th>
+      <th>Min price</th>
+      <th>Reseller price</th>
+      <th>Price</th>
+      <th>Tax rate</th>
+      <th>Is tax inclusive</th>
+      <th>Is featured</th>
+      <th>Is private</th>
+      <th>Is community product</th>
+      <th>Subcategory</th>
+      <th>Image</th>
+      <th>Product segment</th>
+      <th>Category</th>
+      <th>Quantity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @community_products.each do |community_product| %>
+      <tr>
+        <td><%= community_product.title %></td>
+        <td><%= community_product.decrption %></td>
+        <td><%= community_product.min_price %></td>
+        <td><%= community_product.reseller_price %></td>
+        <td><%= community_product.price %></td>
+        <td><%= community_product.tax_rate %></td>
+        <td><%= community_product.is_tax_inclusive %></td>
+        <td><%= community_product.is_featured %></td>
+        <td><%= community_product.is_private %></td>
+        <td><%= community_product.is_community_product %></td>
+        <td><%= community_product.subcategory_id %></td>
+        <td><%= community_product.image %></td>
+        <td><%= community_product.product_segment_id %></td>
+        <td><%= community_product.category_id %></td>
+        <td><%= community_product.quantity %></td>
+        <td><%= link_to 'Show', community_product %></td>
+        <td><%= link_to 'Edit', edit_community_product_path(community_product) %></td>
+        <td><%= link_to 'Destroy', community_product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Community Product', new_community_product_path %>

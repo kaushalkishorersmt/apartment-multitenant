@@ -19,7 +19,9 @@ end
 
 Rails.application.routes.draw do
 
-  resources :shipping_addresses
+  resources :community_product_properties
+  resources :community_products
+
   root to: "home#index"
   get '/product/show', to: "home#show"
   resources :shop_registration
@@ -70,7 +72,7 @@ Rails.application.routes.draw do
     resources :orders
     resources :order_items
     resources :carts
-
+      resources :shipping_addresses
 
     resource :cart, only: %i[update show destroy] do
       member do

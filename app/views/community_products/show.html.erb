@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @community_product.title %>
+</p>
+
+<p>
+  <strong>Decrption:</strong>
+  <%= @community_product.decrption %>
+</p>
+
+<p>
+  <strong>Min price:</strong>
+  <%= @community_product.min_price %>
+</p>
+
+<p>
+  <strong>Reseller price:</strong>
+  <%= @community_product.reseller_price %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @community_product.price %>
+</p>
+
+<p>
+  <strong>Tax rate:</strong>
+  <%= @community_product.tax_rate %>
+</p>
+
+<p>
+  <strong>Is tax inclusive:</strong>
+  <%= @community_product.is_tax_inclusive %>
+</p>
+
+<p>
+  <strong>Is featured:</strong>
+  <%= @community_product.is_featured %>
+</p>
+
+<p>
+  <strong>Is private:</strong>
+  <%= @community_product.is_private %>
+</p>
+
+<p>
+  <strong>Is community product:</strong>
+  <%= @community_product.is_community_product %>
+</p>
+
+<p>
+  <strong>Subcategory:</strong>
+  <%= @community_product.subcategory_id %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @community_product.image %>
+</p>
+
+<p>
+  <strong>Product segment:</strong>
+  <%= @community_product.product_segment_id %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @community_product.category_id %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @community_product.quantity %>
+</p>
+
+<%= link_to 'Edit', edit_community_product_path(@community_product) %> |
+<%= link_to 'Back', community_products_path %>
