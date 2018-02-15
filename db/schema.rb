@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214150343) do
+ActiveRecord::Schema.define(version: 20180215112758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,38 @@ ActiveRecord::Schema.define(version: 20180214150343) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_segment_id"], name: "index_categories_on_product_segment_id"
+  end
+
+  create_table "community_product_properties", force: :cascade do |t|
+    t.bigint "community_product_id"
+    t.string "size"
+    t.string "color"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_product_id"], name: "index_community_product_properties_on_community_product_id"
+  end
+
+  create_table "community_products", force: :cascade do |t|
+    t.string "title"
+    t.text "decrption"
+    t.decimal "min_price"
+    t.decimal "reseller_price"
+    t.decimal "price"
+    t.decimal "tax_rate"
+    t.boolean "is_tax_inclusive"
+    t.boolean "is_featured"
+    t.boolean "is_private"
+    t.boolean "is_community_product"
+    t.integer "subcategory_id"
+    t.string "image", default: [], array: true
+    t.integer "product_segment_id"
+    t.integer "category_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "source"
+    t.integer "source_product_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -108,6 +140,7 @@ ActiveRecord::Schema.define(version: 20180214150343) do
     t.integer "product_segment_id"
     t.integer "category_id"
     t.integer "quantity"
+    t.integer "community_product_id"
     t.index ["subcategory_id"], name: "index_products_on_subcategory_id"
   end
 
@@ -122,6 +155,15 @@ ActiveRecord::Schema.define(version: 20180214150343) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_shipping_addresses_on_customer_id"
+  end
+
+  create_table "shop_community_products", force: :cascade do |t|
+    t.bigint "shop_id"
+    t.bigint "community_product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_product_id"], name: "index_shop_community_products_on_community_product_id"
+    t.index ["shop_id"], name: "index_shop_community_products_on_shop_id"
   end
 
   create_table "shop_site_admins", force: :cascade do |t|
@@ -180,11 +222,14 @@ ActiveRecord::Schema.define(version: 20180214150343) do
   end
 
   add_foreign_key "categories", "product_segments"
+  add_foreign_key "community_product_properties", "community_products"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "customers"
   add_foreign_key "product_properties", "products"
   add_foreign_key "shipping_addresses", "customers"
+  add_foreign_key "shop_community_products", "community_products"
+  add_foreign_key "shop_community_products", "shops"
   add_foreign_key "shops", "main_products"
   add_foreign_key "shops", "themes"
   add_foreign_key "subcategories", "categories"

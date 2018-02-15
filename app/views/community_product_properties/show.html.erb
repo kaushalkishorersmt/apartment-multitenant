@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Community product:</strong>
+  <%= @community_product_property.community_product %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @community_product_property.size %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @community_product_property.color %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @community_product_property.quantity %>
+</p>
+
+<%= link_to 'Edit', edit_community_product_property_path(@community_product_property) %> |
+<%= link_to 'Back', community_product_properties_path %>

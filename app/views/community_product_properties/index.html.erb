@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Community Product Properties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Community product</th>
+      <th>Size</th>
+      <th>Color</th>
+      <th>Quantity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @community_product_properties.each do |community_product_property| %>
+      <tr>
+        <td><%= community_product_property.community_product %></td>
+        <td><%= community_product_property.size %></td>
+        <td><%= community_product_property.color %></td>
+        <td><%= community_product_property.quantity %></td>
+        <td><%= link_to 'Show', community_product_property %></td>
+        <td><%= link_to 'Edit', edit_community_product_property_path(community_product_property) %></td>
+        <td><%= link_to 'Destroy', community_product_property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Community Product Property', new_community_product_property_path %>

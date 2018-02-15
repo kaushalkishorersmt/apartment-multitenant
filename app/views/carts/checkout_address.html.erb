@@ -73,10 +73,10 @@
                       <p>
                         <%= shipping_address.country %>
                       </p>
-                      <% if shipping_address.primary %>
-                        <span class="label label-primary">Primary</span>
-                        <% @primarycheck_shipping = true %>
-                      <% end %>
+                      <%# if shipping_address.primary %>
+                        <!-- <span class="label label-primary">Primary</span> -->
+                        <%# @primarycheck_shipping = true %>
+                      <%# end %>
                       <hr/>
                       <p>
                         <%= link_to shipping_address, class: "btn btn-default" do %>

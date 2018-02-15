@@ -33,7 +33,17 @@ class ControlPanel::ProductsController < ApplicationController
     respond_to do |format|
       if @product.save
 
-        byebug
+        if @product.is_private == false
+          @community_product = CommunityProduct.create!(title: @product.title, decrption: @product.decrption, min_price: @product.min_price, reseller_price: @product.reseller_price, price: @product.price, tax_rate: @product.tax_rate, is_tax_inclusive: @product.is_tax_inclusive, is_featured: @product.is_featured, is_private: @product.is_private, is_community_product: @product.is_community_product, subcategory_id: @product.subcategory_id,product_segment_id: @product.product_segment_id, category_id: @product.category_id, quantity: @product.quantity, image: @product.image, source: Apartment::Tenant.current, source_product_id: @product.id )
+
+          # byebug
+          @community_product.shop_community_products.create!(shop: Shop.find_by(subdomain: Apartment::Tenant.current))
+
+          @product.product_properties.each do |product_property|
+            @community_product.community_product_properties.create!(quantity: product_property.quantity, size: product_property.size, color: product_property.color)
+          end
+        end
+
         format.html { redirect_to control_panel_products_path, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
@@ -48,6 +58,17 @@ class ControlPanel::ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
+        # byebug
+        if @product.is_private == false
+           CommunityProduct.update_all(title: @product.title, decrption: @product.decrption, min_price: @product.min_price, reseller_price: @product.reseller_price, price: @product.price, tax_rate: @product.tax_rate, is_tax_inclusive: @product.is_tax_inclusive, is_featured: @product.is_featured, is_private: @product.is_private, is_community_product: @product.is_community_product, subcategory_id: @product.subcategory_id, product_segment_id: @product.product_segment_id, category_id: @product.category_id, quantity: @product.quantity, image: @product.image, source: Apartment::Tenant.current, source_product_id: @product.id )
+
+           @community_product = CommunityProduct.find_by(source: Apartment::Tenant.current, source_product_id: @product.id)
+
+          @product.product_properties.each do |product_property|
+            @community_product.community_product_properties.update_all(quantity: product_property.quantity, size: product_property.size, color: product_property.color)
+          end
+        end
+
         format.html { redirect_to control_panel_products_path, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
@@ -62,6 +83,14 @@ class ControlPanel::ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
+
+      if @product.is_private == false
+        @community_product = CommunityProduct.find_by(source: Apartment::Tenant.current, source_product_id: @product.id)
+        if @community_product.present?
+          @community_product.destroy
+        end
+      end
+
       format.html { redirect_to control_panel_products_path, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
@@ -75,6 +104,6 @@ class ControlPanel::ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :decrption, :min_price, :reseller_price, :price, :tax_rate, :is_tax_inclusive, :is_featured, :is_private, :is_community_product, :subcategory_id, :image, :product_segment_id, :category_id, :quantity {product_properties_attributes: [:id, :quantity, :size, :color]})
+      params.require(:product).permit(:title, :decrption, :min_price, :reseller_price, :price, :tax_rate, :is_tax_inclusive, :is_featured, :is_private, :is_community_product, :subcategory_id, :image, :product_segment_id, :category_id, :quantity, :community_product_id, {product_properties_attributes: [:id, :quantity, :size, :color]})
     end
 end
