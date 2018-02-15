@@ -24,18 +24,23 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    # byebug
+    # @order = Order.new(order_params)
+    @order = Order.create_and_charge(cart: current_cart,
+                                    #  user: current_user,
+                                     customer: current_customer,
+                                     payment_id: payment_params[:payment_id])
 
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        # if @order.save
+          format.html { redirect_to @order, notice: 'Order was successfully created.' }
+          format.json { render :show, status: :created, location: @order }
+        # else
+        #   format.html { render :new }
+        #   format.json { render json: @order.errors, status: :unprocessable_entity }
+        # end
       end
     end
-  end
 
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
@@ -62,6 +67,13 @@ class OrdersController < ApplicationController
   end
 
   private
+    def payment_params
+      p = params.permit(:payment_id, :customer_id, :razorpay_payment_id)
+      p.merge!({payment_id: p.delete(:razorpay_payment_id) || p[:payment_id]})
+      p
+    end
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])

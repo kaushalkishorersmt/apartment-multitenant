@@ -12,7 +12,8 @@
             data-prefill.name="<%= "#{current_customer.full_name}" %>"
             data-prefill.email="<%= "#{current_customer.email}" %>"
             data-order_id="<%= "#{@order_reference.id}" %>"
-            data-theme.color="#5091da"></script>
+            data-theme.color="#5091da">
+    </script>
   <% end %>
 <% else %>
   <%= button_to t('checkout'), customer_account_path_helper, class: 'btn btn-default', method: :get %>
