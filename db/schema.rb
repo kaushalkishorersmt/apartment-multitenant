@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215103616) do
+ActiveRecord::Schema.define(version: 20180215112758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,6 +157,15 @@ ActiveRecord::Schema.define(version: 20180215103616) do
     t.index ["customer_id"], name: "index_shipping_addresses_on_customer_id"
   end
 
+  create_table "shop_community_products", force: :cascade do |t|
+    t.bigint "shop_id"
+    t.bigint "community_product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_product_id"], name: "index_shop_community_products_on_community_product_id"
+    t.index ["shop_id"], name: "index_shop_community_products_on_shop_id"
+  end
+
   create_table "shop_site_admins", force: :cascade do |t|
     t.integer "shop_id"
     t.integer "site_admin_id"
@@ -219,6 +228,8 @@ ActiveRecord::Schema.define(version: 20180215103616) do
   add_foreign_key "orders", "customers"
   add_foreign_key "product_properties", "products"
   add_foreign_key "shipping_addresses", "customers"
+  add_foreign_key "shop_community_products", "community_products"
+  add_foreign_key "shop_community_products", "shops"
   add_foreign_key "shops", "main_products"
   add_foreign_key "shops", "themes"
   add_foreign_key "subcategories", "categories"
