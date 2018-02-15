@@ -77,8 +77,8 @@ class CartsController < ApplicationController
     end
 
     def checkout_payment
-      @billing_address = BillingAddress.find_by(user_id: current_customer.id, primary: true)
-      @shipping_address = ShippingAddress.find_by(user_id: current_customer.id, primary: true)
+      # @billing_address = BillingAddress.find_by(user_id: current_customer.id, primary: true)
+      @shipping_address = ShippingAddress.find_by(customer_id: current_customer.id)
       session[:return_to] = request.fullpath
     end
 
