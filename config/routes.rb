@@ -7,7 +7,7 @@ end
 
 class LandingConstraint
   def self.matches?(request)
-    domains = %w{ www.lvh.me lvh.me localhost www.localhost bizknekt.com www.bizknekt.com }
+    domains = %w{ www.lvh.me lvh.me localhost www.localhost }
     case request.subdomain
     when '', 'www'
      domains.include?(request.domain)
@@ -64,6 +64,8 @@ Rails.application.routes.draw do
       resources :subcategories
       resources :products
       resources :product_properties
+
+      resources :community_products
     end
     # devise_for :customers
     # devise_for :customers, controllers: {

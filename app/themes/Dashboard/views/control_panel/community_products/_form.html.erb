@@ -1,0 +1,92 @@
+<%= form_with(model: [:control_panel, community_product], local: true) do |form| %>
+  <% if community_product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(community_product.errors.count, "error") %> prohibited this community_product from being saved:</h2>
+
+      <ul>
+      <% community_product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :community_product_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :decrption %>
+    <%= form.text_area :decrption, id: :community_product_decrption %>
+  </div>
+
+  <div class="field">
+    <%= form.label :min_price %>
+    <%= form.text_field :min_price, id: :community_product_min_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reseller_price %>
+    <%= form.text_field :reseller_price, id: :community_product_reseller_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :community_product_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax_rate %>
+    <%= form.text_field :tax_rate, id: :community_product_tax_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_tax_inclusive %>
+    <%= form.check_box :is_tax_inclusive, id: :community_product_is_tax_inclusive %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_featured %>
+    <%= form.check_box :is_featured, id: :community_product_is_featured %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_private %>
+    <%= form.check_box :is_private, id: :community_product_is_private %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_community_product %>
+    <%= form.check_box :is_community_product, id: :community_product_is_community_product %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subcategory_id %>
+    <%= form.number_field :subcategory_id, id: :community_product_subcategory_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image, id: :community_product_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :product_segment_id %>
+    <%= form.number_field :product_segment_id, id: :community_product_product_segment_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_id %>
+    <%= form.number_field :category_id, id: :community_product_category_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, id: :community_product_quantity %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
