@@ -34,7 +34,7 @@ class ControlPanel::ProductsController < ApplicationController
       if @product.save
 
         if @product.is_private == false
-          @community_product = CommunityProduct.create!(title: @product.title, decrption: @product.decrption, min_price: @product.min_price, reseller_price: @product.reseller_price, price: @product.price, tax_rate: @product.tax_rate, is_tax_inclusive: @product.is_tax_inclusive, is_featured: @product.is_featured, is_private: @product.is_private, is_community_product: @product.is_community_product, subcategory_id: @product.subcategory_id, image: @product.image, source: Apartment::Tenant.current, source_product_id: @product.id )
+          @community_product = CommunityProduct.create!(title: @product.title, decrption: @product.decrption, min_price: @product.min_price, reseller_price: @product.reseller_price, price: @product.price, tax_rate: @product.tax_rate, is_tax_inclusive: @product.is_tax_inclusive, is_featured: @product.is_featured, is_private: @product.is_private, is_community_product: @product.is_community_product, subcategory_id: @product.subcategory_id,product_segment_id: @product.product_segment_id, category_id: @product.category_id, quantity: @product.quantity, image: @product.image, source: Apartment::Tenant.current, source_product_id: @product.id )
 
           # byebug
           @community_product.shop_community_products.create!(shop: Shop.find_by(subdomain: Apartment::Tenant.current))

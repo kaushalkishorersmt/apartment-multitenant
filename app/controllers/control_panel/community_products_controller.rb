@@ -25,10 +25,17 @@ class ControlPanel::CommunityProductsController < ApplicationController
   # POST /community_products
   # POST /community_products.json
   def create
-    @my_product = Product.new(title: @community_product.title, decrption: @community_product.decrption, min_price: @community_product.min_price, reseller_price: @community_product.reseller_price, price: @community_product.price, tax_rate: @community_product.tax_rate, is_tax_inclusive: @community_product.is_tax_inclusive, is_featured: @community_product.is_featured, is_private: @community_product.is_private, is_community_product: @community_product.is_community_product, subcategory_id: @community_product.subcategory_id, image: @community_product.image, community_product_id: @community_product.id )
+    @my_product = Product.new(title: @community_product.title, decrption: @community_product.decrption, min_price: @community_product.min_price, reseller_price: @community_product.reseller_price, price: @community_product.price, tax_rate: @community_product.tax_rate, is_tax_inclusive: @community_product.is_tax_inclusive, is_featured: @community_product.is_featured, is_private: @community_product.is_private, is_community_product: @community_product.is_community_product, subcategory_id: @community_product.subcategory_id, product_segment_id: @community_product.product_segment_id, category_id: @community_product.category_id, quantity: @community_product.quantity, image: @community_product.image, community_product_id: @community_product.id )
 
     if @my_product.save
       @community_product.shop_community_products.create!(shop: Shop.find_by(subdomain: Apartment::Tenant.current))
+      
+      @community_product.community_product_properties.each do |product_property|
+        @my_product.product_properties.create!(quantity: product_property.quantity, size: product_property.size, color: product_property.color)
+      end
+
+
+
       redirect_to control_panel_community_products_path, notice: 'Community product was successfully created.'
     else
        redirect_to control_panel_community_products_path, notice: 'Error.'
