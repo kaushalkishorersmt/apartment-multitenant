@@ -70,6 +70,29 @@ class CartsController < ApplicationController
       end
     end
 
+    def checkout_review
+      # @billing_address = BillingAddress.find_by(user_id: current_customer.id, primary: true)
+      @shipping_address = ShippingAddress.find_by(customer_id: current_customer.id)
+      session[:return_to] = request.fullpath
+    end
+
+    def checkout_payment
+      @billing_address = BillingAddress.find_by(user_id: current_customer.id, primary: true)
+      @shipping_address = ShippingAddress.find_by(user_id: current_customer.id, primary: true)
+      session[:return_to] = request.fullpath
+    end
+
+    def checkout_address
+      # byebug
+      if current_customer
+        @shipping_addresses = ShippingAddress.where(customer_id: current_customer.id)
+        @shipping_address = ShippingAddress.new
+        session[:return_to] = request.fullpath
+      else
+        redirect_to new_customer_registration_path
+      end
+    end
+
 
     def remove_item
       session[:cart] = current_cart.remove_item(params[:remove_item])

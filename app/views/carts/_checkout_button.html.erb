@@ -1,0 +1,19 @@
+<% if current_customer %>
+  <%= form_tag customer_orders_path(current_customer) do %>
+    <% @order_reference = Razorpay::Order.create amount: (price * 100).to_i, currency: 'INR', receipt: 'TEST' %>
+
+    <script
+    src="https://checkout.razorpay.com/v1/checkout.js"
+            data-key="<%= ENV['MERCHANT_KEY_ID'] %>"
+            data-amount="<%= price * 100 %>"
+            data-name="<%= @shop.shop_name %>"
+            data-description="<%= description %>"
+            data-image="/images/product.jpg"
+            data-prefill.name="<%= "#{current_customer.full_name}" %>"
+            data-prefill.email="<%= "#{current_customer.email}" %>"
+            data-order_id="<%= "#{@order_reference.id}" %>"
+            data-theme.color="#5091da"></script>
+  <% end %>
+<% else %>
+  <%= button_to t('checkout'), customer_account_path_helper, class: 'btn btn-default', method: :get %>
+<% end %>

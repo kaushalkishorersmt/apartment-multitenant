@@ -19,6 +19,7 @@ end
 
 Rails.application.routes.draw do
 
+  resources :shipping_addresses
   root to: "home#index"
   get '/product/show', to: "home#show"
   resources :shop_registration
@@ -80,8 +81,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :customers, only: %i[new create update] do
+      # devise_for :users, only: [ :new, :create, :update ]
+      # as :user do
+      resources :orders
+    end
 
-    
   end
 
 end

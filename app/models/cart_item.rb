@@ -21,9 +21,9 @@ class CartItem
     product.price
   end
 
-  def percent_off
-    product.percent_off
-  end
+  # def percent_off
+  #   product.percent_off
+  # end
 
   def on_sale?
     product.on_sale?

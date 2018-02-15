@@ -1,0 +1,24 @@
+<% current_cart.items.each do |cart_item| %>
+  <tr id="product_<%= cart_item.product.id %>">
+    <td style="max-width: 75px">
+      <%#= image_tag product_small_image_path(cart_item.product), class: "img-responsive" %>
+    </td>
+    <td><%= link_to cart_item.title, product_show_path(cart_item.product) %></td>
+    <% if cart_item.color.nil? %>
+      <td>-</td>
+    <% else %>
+      <td><%= cart_item.color %></td>
+    <% end %>
+    <% if cart_item.size.nil? %>
+      <td>-</td>
+    <% else %>
+      <td><%= cart_item.size %></td>
+    <% end %>
+    <td class="text-right">
+      <%= cart_item.quantity %>
+    </td>
+    <td><%= number_to_currency(cart_item.unit_price, unit: "₹ ") %></td>
+    <td><%#= cart_item.percent_off %> %</td>
+    <td colspan="2"><%= cart_item.selling_price %></td>
+  </tr>
+<% end %>

@@ -11,7 +11,7 @@
         <div class="box text-center">
           <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-              <h1>Shopping cart</h1>
+              <h1>Order Review</h1>
               <% if current_cart.empty? %>
                 <p class="text-muted">
                   <%= t('cart.isempty') %>
@@ -25,7 +25,43 @@
           </div>
         </div>
       </div>
+
+
       <div class="col-md-9 clearfix">
+        <div class="box">
+          <div class="row">
+            <div class="col-md-12">
+              <p>Name:
+                <%= current_customer.full_name %>
+              </p>
+              <p>Email:
+                <%= current_customer.email %>
+              </p>
+              <hr/>
+            </div>
+            <div class="col-md-6">
+              <strong>Shipping Address:</strong>
+              <p>
+                <%= @shipping_address.line1 %>
+              </p>
+              <p>
+                <%= @shipping_address.line2 %>
+              </p>
+              <p>
+                <%= @shipping_address.zipcode %>
+              </p>
+              <p>
+                <%= @shipping_address.city %>
+              </p>
+              <p>
+                <%= @shipping_address.state %>
+              </p>
+              <p>
+                <%= @shipping_address.country %>
+              </p>
+            </div>
+          </div>
+        </div>
         <div class="box">
           <div class="table-responsive hidden-xs">
             <table class="table">
@@ -51,7 +87,7 @@
                 </tr>
               </thead>
               <tbody>
-                <%= render partial: 'cart_item' %>
+                <%= render partial: 'cart_item_static' %>
               </tbody>
               <tfoot>
                 <tr>
@@ -63,43 +99,23 @@
               </tfoot>
             </table>
           </div>
+
           <div class="visible-xs">
-            <%#= render partial: 'cart_item_mobile' %>
+            <%#= render partial: 'cart_item_static_mobile' %>
           </div>
-          <!-- /.table-responsive -->
+
           <div class="box-footer">
             <div class="pull-left">
-              <%= link_to root_path, class: "btn btn-default" do %>
-                <%#= fa_icon "chevron-left" %> Continue shopping
-              <% end %>
+              <%#= link_to cart_path, class: 'btn btn-default' do %>
+                Back to Cart
+              <%# end %>
             </div>
             <div class="pull-right">
-              <%= link_to cart_path, class: 'btn btn-default', method: :delete do %>
-                <%#= fa_icon "trash-o" %>
-                <%= t('cart.empty') %> | 
-              <% end %>
-              <%= link_to checkout_address_cart_path, class: 'btn btn-default' do %>
-                Proceed to Checkout
-                <%#= fa_icon "chevron-right" %>
-              <% end %>
+              <%= render partial: 'checkout_button', locals: { price: current_cart.total, description: current_cart.items.collect(&:title).join(", ") } %>
             </div>
-          </div>
-
-
-        </div>
-        <!-- /.box -->
-        <div class="row">
-          <div class="row">
-            <div class="col-md-12 col-sm-6">
-              <div class="box">
-                <h3>You may also like these products</h3>
-              </div>
-            </div>
-            <%#= render @products.limit(6), class_name: "col-md-4 col-sm-6"  %>
           </div>
         </div>
       </div>
-      <!-- /.col-md-9 -->
       <div class="col-md-3">
         <div class="box" id="order-summary">
           <div class="box-header">
@@ -140,5 +156,3 @@
   </div>
   <!-- /#content -->
 </div>
-<br>
-<br>

@@ -1,0 +1,165 @@
+<div id="all">
+  <div id="content">
+    <div class="container">
+      <div class="col-md-12">
+        <ul class="breadcrumb">
+          <li>
+            <%= link_to "Home", root_path %>
+          </li>
+          <li>Shopping cart</li>
+        </ul>
+        <div class="box text-center">
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <h1>Shopping cart</h1>
+              <% if current_cart.empty? %>
+                <p class="text-muted">
+                  <%= t('cart.isempty') %>
+                </p>
+                <%= link_to t('back.home'), root_path, class: "btn btn-default" %>
+              <% else %>
+                <p class="text-muted">You currently have
+                  <%= current_cart.items.count %> item(s) in your cart.</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 clearfix" id="checkout">
+        <div class="box">
+          <ul class="nav nav-pills nav-justified">
+            <li class="active">
+              <a href="#">
+                <i class="fa fa-map-marker"></i>
+                <br>
+                 Address
+              </a>
+            </li>
+            <li class="disabled">
+              <a href="#">
+                <i class="fa fa-eye"></i>
+                <br>
+                 Order Review</a>
+            </li>
+            <li class="disabled">
+              <a href="#">
+                <i class="fa fa-money"></i>
+                <br>
+                 Payment Method</a>
+            </li>
+          </ul>
+          <div class="content">
+            <div class="row">
+              <div class="col-md-12">
+                <h3>Shipping Addresses</h3>
+                <%# unless @shipping_addresses.nil? %>
+                  <% @shipping_addresses.each do |shipping_address| %>
+                    <div class="col-md-4 thumbnail" style="text-align: left;text-transform: capitalize;">
+                      <p>
+                        <%= shipping_address.line1 %>
+                      </p>
+                      <p>
+                        <%= shipping_address.line2 %>
+                      </p>
+                      <p>
+                        <%= shipping_address.zipcode %>
+                      </p>
+                      <p>
+                        <%= shipping_address.city %>
+                      </p>
+                      <p>
+                        <%= shipping_address.state %>
+                      </p>
+                      <p>
+                        <%= shipping_address.country %>
+                      </p>
+                      <% if shipping_address.primary %>
+                        <span class="label label-primary">Primary</span>
+                        <% @primarycheck_shipping = true %>
+                      <% end %>
+                      <hr/>
+                      <p>
+                        <%= link_to shipping_address, class: "btn btn-default" do %>
+                          <%#= fa_icon "search" %>
+                        <% end %>
+                        <%= link_to edit_shipping_address_path(shipping_address), class: "btn btn-default"  do %>
+                          <%#= fa_icon "pencil" %>
+                        <% end %>
+                        <%= link_to shipping_address, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }  do %>
+                          <%#= fa_icon "trash" %>
+                        <% end %>
+                      </p>
+                    </div>
+                  <% end %>
+                <%# end %>
+              </div>
+              <% if @shipping_addresses.count < 1 %>
+                <%= render 'shipping_addresses/form' %>
+                <%#= URI(request.referer).path %>
+                <%#= link_to 'New shipping address', new_shipping_address_path, class: "btn btn-default" %>
+              <% end %>
+            </div>
+          </div>
+          <div class="box-footer">
+            <div class="pull-left">
+              <%#= link_to cart_path, class: 'btn btn-default' do %>
+                Back to Cart
+              <%# end %>
+            </div>
+            <div class="pull-right">
+              <%# if @billing_address.nil? or @shipping_address.nil? %>
+              <% if @shipping_address.nil? %>
+                <%= link_to "#", class: 'btn btn-default disabled' do %>
+                  Address required to Proceed
+                  <%#= fa_icon "chevron-right" %>
+                <% end %>
+              <% else %>
+                <%= link_to checkout_review_cart_path, class: 'btn btn-default' do %>
+                  Proceed to Order Review
+                  <%#= fa_icon "chevron-right" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="box" id="order-summary">
+          <div class="box-header">
+            <h3>Order summary</h3>
+          </div>
+          <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Order subtotal</td>
+                  <th>
+                    <%= number_to_currency(current_cart.total, unit: "₹ ") %>
+                  </th>
+                </tr>
+                <tr>
+                  <td>Shipping and handling</td>
+                  <th>0.00</th>
+                </tr>
+                <tr>
+                  <td>Tax</td>
+                  <th>0.00</th>
+                </tr>
+                <tr class="total">
+                  <td>Total</td>
+                  <th>
+                    <%= number_to_currency(current_cart.total, unit: "₹ ") %>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-3 -->
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /#content -->
+</div>

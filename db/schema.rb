@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214075118) do
+ActiveRecord::Schema.define(version: 20180214150343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,19 @@ ActiveRecord::Schema.define(version: 20180214075118) do
     t.index ["subcategory_id"], name: "index_products_on_subcategory_id"
   end
 
+  create_table "shipping_addresses", force: :cascade do |t|
+    t.string "line1"
+    t.string "line2"
+    t.string "zipcode"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_shipping_addresses_on_customer_id"
+  end
+
   create_table "shop_site_admins", force: :cascade do |t|
     t.integer "shop_id"
     t.integer "site_admin_id"
@@ -171,6 +184,7 @@ ActiveRecord::Schema.define(version: 20180214075118) do
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "customers"
   add_foreign_key "product_properties", "products"
+  add_foreign_key "shipping_addresses", "customers"
   add_foreign_key "shops", "main_products"
   add_foreign_key "shops", "themes"
   add_foreign_key "subcategories", "categories"
